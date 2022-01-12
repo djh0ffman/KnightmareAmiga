@@ -1,0 +1,8 @@
+smp_0: incbin "assets/mods/smp/smp_0.bin"
+smp_1: incbin "assets/mods/smp/smp_1.bin"
+smp_27: incbin "assets/mods/smp/smp_27.bin"
+smp_83: incbin "assets/mods/smp/smp_83.bin"
+smp_84: incbin "assets/mods/smp/smp_84.bin"
+smp_64: incbin "assets/mods/smp/smp_64.bin"
+smp_85: incbin "assets/mods/smp/smp_85.bin"
+smp_86: incbin "assets/mods/smp/smp_86.bin"

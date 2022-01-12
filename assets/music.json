@@ -1,0 +1,236 @@
+[
+  {
+    "ItemId": 0,
+    "ItemName": "GameStart",
+    "Filename": "mod.gamestart",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": true,
+    "Tag": "MOD_START"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Level 1 - MSX Remixed",
+    "Filename": "mod.bgm1",
+    "MidwayPoint": 8,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_BGM1"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Boss 1 - MSX Remixed",
+    "Filename": "mod.boss1",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_BOSS1"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Level 2 - MSX Remixed",
+    "Filename": "mod.bgm2",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_BGM2"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Boss 2 - MSX Remixed",
+    "Filename": "mod.boss2",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_BOSS2"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Level 3 - Prince of Maresia",
+    "Filename": "mod.prince_of_maresia",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_BGM3"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Boss 3 - Bat Rock",
+    "Filename": "mod.bat_rock",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_BOSS3"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Level 4 - Tavern Funk",
+    "Filename": "mod.tavern_funk",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_BGM4"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Boss 4 - Blind Panic",
+    "Filename": "mod.blind_panic",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_BOSS4"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Level 5 - Another Level",
+    "Filename": "mod.another_level",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_BGM5"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Boss 5 - More Boss",
+    "Filename": "mod.more_boss",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_BOSS5"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Level 6 - Xakt",
+    "Filename": "mod.xakt",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_BGM6"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Boss 6 - Under His Eyes",
+    "Filename": "mod.under_his_eyes",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_BOSS6"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Level 7 - Positive Trek",
+    "Filename": "mod.positive_trek",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_BGM7"
+  },
+   {
+    "ItemId": 0,
+    "ItemName": "Boss 7 - Boss Fronty II",
+    "Filename": "mod.boss_fronty_ii",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_BOSS7"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Level 8 - Last Hurdle",
+    "Filename": "mod.last_hurdle",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_BGM8"
+  },
+   {
+    "ItemId": 0,
+    "ItemName": "Boss 8 - Manbow Reprise",
+    "Filename": "mod.manbow_reprise",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_BOSS8"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "PowerUp",
+    "Filename": "mod.powerup",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": true,
+    "Tag": "MOD_POWERUP"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Player Death",
+    "Filename": "mod.death",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": true,
+    "Tag": "MOD_DEATH"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Game Over",
+    "Filename": "mod.gameover",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": true,
+    "Tag": "MOD_GAMEOVER"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Hiscore",
+    "Filename": "mod.hiscore",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_HISCORE"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Warp",
+    "Filename": "mod.warp",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": true,
+    "Tag": "MOD_WARP"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Boss Death",
+    "Filename": "mod.bossdeath",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": true,
+    "Tag": "MOD_BOSSDEATH"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Gradius Bonus",
+    "Filename": "mod.gradius",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": true,
+    "Tag": "MOD_GRADIUS"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Title",
+    "Filename": "mod.title",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_TITLE"
+  },
+  {
+    "ItemId": 0,
+    "ItemName": "Ending",
+    "Filename": "mod.ending",
+    "MidwayPoint": 0,
+    "LevelId": 0,
+    "StaticMod": false,
+    "Tag": "MOD_ENDING"
+  },
+]

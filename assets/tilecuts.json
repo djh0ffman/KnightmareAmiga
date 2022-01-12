@@ -1,0 +1,1420 @@
+[
+	{
+		"Name": "Princess",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "BobSingles",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "LastSprites.gif",
+				"Width": 16,
+				"Height": 24,
+				"StartX": 256,
+				"StartY": 224,
+				"Count": 1
+			}
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "PlayerNormal",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 0,
+				"StartY": 0,
+				"Count": 4
+			}
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "PlayerRed",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 128,
+				"StartY": 16,
+				"Count": 4
+			}
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "PlayerShield",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": -8,
+		"Output": "Bob",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 24,
+				"StartX": 64,
+				"StartY": 0,
+				"Count": 4
+			}
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "PlayerDeath",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 192,
+				"StartY": 0,
+				"Count": 8
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 0,
+				"StartY": 16,
+				"Count": 3
+			}
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "PlayerTrans",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 128,
+				"StartY": 0,
+				"Count": 4
+			}
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "PlayerGradius",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "LastSprites.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 192,
+				"StartY": 224,
+				"Count": 3
+			}
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "ShopExit",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "BobSingles",
+		"Layer": 1,
+		"CutList": [
+	
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 144,
+				"StartY": 112,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "HUD",
+		"DefaultOffsetX": -4,
+		"DefaultOffsetY": -16,
+		"Output": "Raw",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "HUD3.gif",
+				"Width": 32,
+				"Height": 8,
+				"StartX": 128,
+				"StartY": 6,
+				"Count": 1
+			},
+			{
+				"SheetName": "HUD3.gif",
+				"Width": 32,
+				"Height": 10,
+				"StartX": 176,
+				"StartY": 2,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "QBlocks",
+		"DefaultOffsetX": -4,
+		"DefaultOffsetY": -16,
+		"Output": "Raw",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 64,
+				"StartY": 112,
+				"Count": 4
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 160,
+				"StartY": 112,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 144,
+				"StartY": 112,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 192,
+				"StartY": 112,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 128,
+				"StartY": 112,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 176,
+				"StartY": 112,
+				"Count": 1
+			},
+			{
+				"SheetName": "LastSprites.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 208,
+				"StartY": 112,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "PlayerShots",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 240,
+				"StartY": 16,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 256,
+				"StartY": 16,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 288,
+				"StartY": 16,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 64,
+				"StartY": 32,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 272,
+				"StartY": 16,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Comment": "Fireball",
+				"Width": 8,
+				"Height": 16,
+				"StartX": 48,
+				"StartY": 16,
+				"Count": 1
+			},			
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Comment": "Fireball",
+				"Width": 8,
+				"Height": 16,
+				"StartX": 56,
+				"StartY": 16,
+				"Count": 1
+			},			
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Comment": "Fireball",
+				"Width": 8,
+				"Height": 16,
+				"StartX": 48,
+				"StartY": 32,
+				"Count": 1
+			},			
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Comment": "Fireball",
+				"Width": 8,
+				"Height": 16,
+				"StartX": 56,
+				"StartY": 32,
+				"Count": 1
+			},	
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Comment": "Boomerang",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 304,
+				"StartY": 16,
+				"Count": 1
+			},					
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Comment": "Boomerang",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 0,
+				"StartY": 32,
+				"Count": 3
+			},	
+			{
+				"SheetName": "sumoattack.gif",
+				"Comment": "GradiusLazer",
+				"Width": 16,
+				"Height": 64,
+				"StartX": 16,
+				"StartY": 0,
+				"Count": 1
+			},				
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "Blob",
+		"DefaultOffsetX": -8,
+		"DefaultOffsetY": -8,
+		"Output": "Bob",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 264,
+				"StartY": 168,
+				"Count": 2
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 264,
+				"StartY": 184,
+				"Count": 2
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 264,
+				"StartY": 200,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "Hoodie",
+		"DefaultOffsetX": -8,
+		"DefaultOffsetY": -8,
+		"Output": "Bob",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 17,
+				"Height": 17,
+				"StartX": 215,
+				"StartY": 72,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 17,
+				"Height": 17,
+				"StartX": 239,
+				"StartY": 72,
+				"Count": 1
+			},
+
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "Kong",
+		"DefaultOffsetX": -8,
+		"DefaultOffsetY": -8,
+		"Output": "Bob",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 0,
+				"StartY": 112,
+				"Count": 4
+			},
+
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "Bones",
+		"DefaultOffsetX": -8,
+		"DefaultOffsetY": -8,
+		"Output": "Bob",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 17,
+				"Height": 18,
+				"StartX": 0,
+				"StartY": 88,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 17,
+				"Height": 18,
+				"StartX": 23,
+				"StartY": 88,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 17,
+				"Height": 18,
+				"StartX": 47,
+				"StartY": 88,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 18,
+				"StartX": 72,
+				"StartY": 88,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "Cloud",
+		"DefaultOffsetX": -8,
+		"DefaultOffsetY": -8,
+		"Output": "Bob",
+		"Layer": 3,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 152,
+				"StartY": 96,
+				"Count": 2
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "Devil",
+		"DefaultOffsetX": -8,
+		"DefaultOffsetY": -8,
+		"Output": "Bob",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 17,
+				"Height": 16,
+				"StartX": 71,
+				"StartY": 72,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 17,
+				"Height": 16,
+				"StartX": 95,
+				"StartY": 72,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "SpikeBall",
+		"DefaultOffsetX": -8,
+		"DefaultOffsetY": -8,
+		"Output": "Bob",
+		"Layer": 3,
+		"CutList": [
+			{
+				"SheetName": "LastSpr2.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 128,
+				"StartY": 88,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "FireBall",
+		"DefaultOffsetX": -8,
+		"DefaultOffsetY": -8,
+		"Output": "Bob",
+		"Layer": 3,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 96,
+				"StartY": 88,
+				"Count": 2
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "Ghost",
+		"DefaultOffsetX": -8,
+		"DefaultOffsetY": -8,
+		"Output": "Bob",
+		"Layer": 3,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 17,
+				"Height": 17,
+				"StartX": 263,
+				"StartY": 95,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 17,
+				"Height": 17,
+				"StartX": 287,
+				"StartY": 95,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "Head",
+		"DefaultOffsetX": -8,
+		"DefaultOffsetY": -8,
+		"Output": "Bob",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 17,
+				"StartX": 167,
+				"StartY": 71,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 17,
+				"StartX": 191,
+				"StartY": 71,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "Blinker",
+		"DefaultOffsetX": -8,
+		"DefaultOffsetY": -8,
+		"Output": "Bob",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 17,
+				"StartX": 263,
+				"StartY": 71,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 17,
+				"StartX": 287,
+				"StartY": 71,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "Bat",
+		"DefaultOffsetX": -8,
+		"DefaultOffsetY": -8,
+		"Output": "Bob",
+		"Layer": 2,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 18,
+				"Height": 16,
+				"StartX": 224,
+				"StartY": 48,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 248,
+				"StartY": 48,
+				"Count": 1
+			},
+
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "Gargoyle",
+		"DefaultOffsetX": -9,
+		"DefaultOffsetY": -8,
+		"Output": "Bob",
+		"Layer": 2,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 18,
+				"Height": 17,
+				"StartX": 119,
+				"StartY": 71,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 18,
+				"Height": 17,
+				"StartX": 143,
+				"StartY": 71,
+				"Count": 1
+			},
+
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "BlueKnight",
+		"DefaultOffsetX": -8,
+		"DefaultOffsetY": -8,
+		"Output": "Bob",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 264,
+				"StartY": 48,
+				"Count": 2
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "BossKnight",
+		"DefaultOffsetX": -8,
+		"DefaultOffsetY": -8,
+		"Output": "Bob",
+		"Layer": 1,
+		"Category": "Boss",
+		"CutList": [
+			{
+				"SheetName": "LastSprites.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 192,
+				"StartY": 48,
+				"Count": 2
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "Shadow",
+		"DefaultOffsetX": -8,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 0,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 15,
+				"StartX": 168,
+				"StartY": 161,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 15,
+				"StartX": 192,
+				"StartY": 161,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},	
+	{
+		"Name": "EnemyBullet",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 3,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 4,
+				"Height": 4,
+				"StartX": 90,
+				"StartY": 32,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 4,
+				"Height": 4,
+				"StartX": 85,
+				"StartY": 32,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 4,
+				"Height": 4,
+				"StartX": 80,
+				"StartY": 32,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "EnemyBone",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 3,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 112,
+				"StartY": 32,
+				"Count": 4
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "EnemyArrow",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 3,
+		"CutList": [
+			{
+				"SheetName": "LastSprites.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 192,
+				"StartY": 288,
+				"Count": 4
+			},
+			{
+				"SheetName": "LastSprites.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 0,
+				"StartY": 288,
+				"Count": 12
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "EnemyBolt",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 3,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 96,
+				"StartY": 32,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "EnemyStarShot",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 3,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 12,
+				"Height": 16,
+				"StartX": 0,
+				"StartY": 48,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "EnemyShotFire",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 3,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 18,
+				"Height": 16,
+				"StartX": 13,
+				"StartY": 48,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 32,
+				"StartY": 48,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 48,
+				"StartY": 48,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		{ "OffsetX": -3, "OffsetY": 0		}
+		]
+	},
+	{
+		"Name": "EnemyAxe",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 3,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 64,
+				"StartY": 48,
+				"Count": 4
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "EnemyPickAxe",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 3,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 192,
+				"StartY": 96,
+				"Count": 4
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "PowerUp",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 5,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 32,
+				"StartY": 224,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 16,
+				"StartY": 224,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 48,
+				"StartY": 224,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 64,
+				"StartY": 224,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},	
+	{
+		"Name": "PowerUp1",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 5,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 112,
+				"StartY": 256,
+				"Count": 4
+			},
+		],
+		"Offsets": [
+		]
+	},	
+	{
+		"Name": "PowerUp2",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 5,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 112,
+				"StartY": 272,
+				"Count": 4
+			},
+		],
+		"Offsets": [
+		]
+	},	
+	{
+		"Name": "WeaponPowerUp1",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 5,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 0,
+				"StartY": 256,
+				"Count": 7
+			},
+		],
+		"Offsets": [
+		]
+	},	
+	{
+		"Name": "WeaponPowerUp2",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 5,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 0,
+				"StartY": 272,
+				"Count": 7
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "FireDeath",
+		"DefaultOffsetX": -8,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 48,
+				"StartY": 240,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 32,
+				"StartY": 240,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 16,
+				"StartY": 240,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 0,
+				"StartY": 240,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 8,
+				"Height": 16,
+				"StartX": 64,
+				"StartY": 240,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 8,
+				"Height": 16,
+				"StartX": 72,
+				"StartY": 240,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+			{ "OffsetX": -8, "OffsetY": 0 },
+			{ "OffsetX": -8, "OffsetY": 0 },
+			{ "OffsetX": -8, "OffsetY": 0 },
+			{ "OffsetX": -8, "OffsetY": 0 },
+			{ "OffsetX": -4, "OffsetY": 0 },
+			{ "OffsetX": -4, "OffsetY": 0 },
+		]
+	},
+	{
+		"Name": "BossWitch",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 0,
+		"Category": "Boss",
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 40,
+				"Height": 40,
+				"StartX": 88,
+				"StartY": 160,
+				"Count": 2
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "BossBigKnight",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 0,
+		"Category": "Boss",
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 40,
+				"Height": 48,
+				"StartX": 80,
+				"StartY": 200,
+				"Count": 2
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 24,
+				"Height": 24,
+				"StartX": 160,
+				"StartY": 224,
+				"Count": 1,
+				"Layer": 1
+			},
+			
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "BossSumo",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 0,
+		"Category": "Boss",
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 40,
+				"Height": 48,
+				"StartX": 0,
+				"StartY": 176,
+				"Count": 2
+			},
+			{
+				"SheetName": "sumoattack.gif",
+				"Width": 16,
+				"Height": 128,
+				"StartX": 0,
+				"StartY": 0,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "BossEyes",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 0,
+		"Category": "Boss",
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 48,
+				"Height": 48,
+				"StartX": 168,
+				"StartY": 176,
+				"Count": 2
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "Eye",
+		"DefaultOffsetX": 0,
+		"DefaultOffsetY": 7,
+		"Output": "Bob",
+		"Layer": 1,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 16,
+				"Height": 16,
+				"StartX": 0,
+				"StartY": 70,
+				"Count": 4
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "BossSkull",
+		"DefaultOffsetX": -11,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 0,
+		"Category": "Boss",
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 40,
+				"Height": 48,
+				"StartX": 0,
+				"StartY": 128,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 40,
+				"Height": 48,
+				"StartX": 48,
+				"StartY": 128,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "BossCloak",
+		"DefaultOffsetX": -16,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 0,
+		"Category": "Boss",
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 48,
+				"Height": 48,
+				"StartX": 224,
+				"StartY": 120,
+				"Count": 2
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "BossBat",
+		"DefaultOffsetX": -11,
+		"DefaultOffsetY": 0,
+		"Output": "Bob",
+		"Layer": 0,
+		"Category": "Boss",
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 32,
+				"Height": 32,
+				"StartX": 88,
+				"StartY": 128,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 48,
+				"Height": 32,
+				"StartX": 127,
+				"StartY": 128,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 48,
+				"Height": 32,
+				"StartX": 175,
+				"StartY": 128,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		{
+			"OffsetX": -8,
+			"OffsetY": 5,
+		},
+		{
+			"OffsetX": -14,
+			"OffsetY": 0,
+		},
+		{
+			"OffsetX": -14,
+			"OffsetY": 0,
+		}
+		]
+	},
+	{
+		"Name": "BossSkullShadow",
+		"DefaultOffsetX": -11,
+		"DefaultOffsetY": 50,
+		"Output": "Bob",
+		"Layer": 0,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 40,
+				"Height": 16,
+				"StartX": 184,
+				"StartY": 272,
+				"Count": 1
+			},
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 40,
+				"Height": 16,
+				"StartX": 224,
+				"StartY": 272,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},
+	{
+		"Name": "Bonus1000",
+		"DefaultOffsetX": -8,
+		"DefaultOffsetY": 0,
+		"Output": "BobSingles",
+		"Layer": 6,
+		"CutList": [
+			{
+				"SheetName": "Sprites320x256.gif",
+				"Width": 17,
+				"Height": 16,
+				"StartX": 176,
+				"StartY": 48,
+				"Count": 1
+			},
+		],
+		"Offsets": [
+		]
+	},
+]
