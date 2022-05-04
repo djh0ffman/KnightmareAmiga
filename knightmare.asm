@@ -419,7 +419,13 @@ Cheat:
     ;move.b     #POWERUP_TRANSPARENT,PlayerStatus+PLAYER_PowerUp(a5)
     ;bsr        PowerTimerDisplay
     ;move.w     #$fff,COLOR00(a6)
-    bsr        KillAllEnemy
+    move.b     #1,FreezeFlag(a5)
+    move.b     #1,FreezeStatus(a5)
+    move.b     #5,FreezeTimerHi(a5)
+    clr.b      FreezeTimerLo(a5)
+    move.b     GameFrame(a5),FreezeTimeGameFrame(a5)
+
+    bsr        FreezeTimerDisplay
 .skip
     rts
 

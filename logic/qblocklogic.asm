@@ -55,6 +55,7 @@ QBlockInit:
     addq.b              #2,d0
     sub.b               QBLOCKDATA_LevelPos(a1),d0
     lsl.b               #3,d0 
+    subq.b              #1,d0                                               ; off by one
     move.b              d0,QBLOCK_PosY(a0)
     lea                 QBLOCK_Sizeof(a0),a0
     POPM                d0/d1

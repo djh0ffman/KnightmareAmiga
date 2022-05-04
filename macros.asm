@@ -68,8 +68,10 @@ ANIMATE2 MACRO
 GETPLAYERDIM MACRO
             moveq      #0,d3
             move.b     PlayerStatus+PLAYER_PosX(a5),d3
+            addq.b     #3,d3
             swap       d3
             move.b     PlayerStatus+PLAYER_PosY(a5),d3
+            addq.b     #3,d3
             move.l     #$000a000a,d4
             ENDM
 
