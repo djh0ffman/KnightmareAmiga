@@ -6,7 +6,7 @@
 
     include             "common.asm"
 
-EyesBossLogic:                                    ; ...
+EyesBossLogic:                                 
     moveq               #0,d0
     move.b              BossStatus(a5),d0
     bne                 .run
@@ -48,15 +48,11 @@ EyesBossSetup:
     rts
 
 EyesBossSetSpeed: 
-    ;move.b              #1,BossDeathFlag(a5)               ; TODO: remove
-    ;bra                 KillBoss
-    
     bsr                 SkullBossShadow
     addq.b              #1,BossStatus(a5)
     rts
 
 EyesBossMove:
-    ;call        DecBossDeathTimer             ; decrements the boss auto death timer
     bsr                 SkullBossShadow
 
     bsr                 .run
@@ -158,7 +154,7 @@ InitEyes:
 ; +2 = offset x
 
 EyeOffsetList:
-    dc.b                $80, $FC, $10                      ; ...
+    dc.b                $80, $FC, $10                   
     dc.b                $30, 2, 3                          ; eye sprite offset list
     dc.b                $70, 2, $1D                        ;
     dc.b                $A0, $C, $10                       ; +0 = offset y
@@ -198,9 +194,6 @@ UpdateEyeBob:
     cmp.b               EYE_BobIdPrev(a2),d0
     beq                 .exit
 
-    ;cmp.b               #4,d0
-    ;bcc                 .hide
-
     sf                  Bob_Hide(a3)
     move.b              d0,EYE_BobIdPrev(a2)
     add.w               d0,d0
@@ -223,36 +216,19 @@ UpdateEyeBob:
 ;
 ;----------------------------------------------------------------------------
 
-ProcessEyes:                                      ; ...
-    ;ld          a, (BossStatus)
-    ;cp          3
-    ;jr          c, ProcessEyesSkip
-    ;ld          ix, EyeBossEyes
-    ;ld          b, 6
-    ;ld          de, 10h
-    
-    ;cmp.b               #3,BossStatus(a5)
-    ;bcs                 .skip
-
+ProcessEyes:                                   
     lea                 BobMatrix(a5),a4
     lea                 EyeList(a5),a2
     moveq               #EYE_COUNT-1,d7
 
-;ProcessEyesLoop:                                  ; ...
 .loop
-    ;exx
-    ;call        EyeBossEyeLogic
     bsr                 EyeLogic
     bsr                 UpdateEyeBob
-    ;exx
-    ;add         ix, de
-    ;djnz        ProcessEyesLoop
+
     lea                 EYE_Sizeof(a2),a2
     dbra                d7,.loop
 
-;ProcessEyesSkip:                                  ; ...
 .skip
-    ;jp          EyeBossUpdateSprites
     rts
 
 
@@ -266,10 +242,6 @@ ProcessEyes:                                      ; ...
 ;----------------------------------------------------------------------------
 
 EyeLogic:
-    ;ld          a, (ix+EYE.Status)
-    ;dec         a
-    ;ret         m                                  ; status 0 then quit
-    ;call        JumpIndex_A
     moveq               #0,d0
     move.b              EYE_Status(a2),d0
     subq.b              #1,d0
@@ -418,8 +390,6 @@ EyeCheckCollision:
     ; eye hit
 
     bset                #7,PLAYERSHOT_Status(a1)
-    ;move.w              PLAYERSHOT_BobSlot(a1),d4
-    ;clr.b               Bob_Allocated(a4,d4.w)
 
     moveq               #0,d0
     move.b              PLAYERSHOT_WeaponId(a1),d0
@@ -456,7 +426,7 @@ EyeCheckCollision:
     dbra                d5,.loop
     rts
 
-EyeShotHitPoints:                                 ; ...
+EyeShotHitPoints:                              
     dc.b                1, 1, 1, 2, 2, 2
     even
 
@@ -466,22 +436,9 @@ EyeShotHitPoints:                                 ; ...
 ;
 ;----------------------------------------------------------------------------
 
-EyeShotLogic:                                     ; ...
-    ;ld                  a, (ix+EYE.AnimId)
-    ;and                 0FBh
-    ;cp                  2
-    ;ret                 nz
+EyeShotLogic:                                  
     tst.b               EYE_Hide(a2)
     bne                 .exit
-
-    ;ld                  a, (BossAttackParams)
-    ;ld                  c, 3Fh                             ; '?'                      ; shot timer and
-    ;cp                  2
-    ;jr                  c, EyeShotLogic1
-    ;ld                  c, 1Fh                             ; shot timer and
-    ;cp                  4
-    ;jr                  c, EyeShotLogic1
-    ;ld                  c, 0Fh                             ; shot timer and
 
     move.b              EyeDeathCount(a5),d0
     moveq               #$3f,d1
@@ -493,29 +450,10 @@ EyeShotLogic:                                     ; ...
     moveq               #$f,d1
 
 .setshot
-;EyeShotLogic1:                                    ; ...
-    ;ld                  a, (ix+EYE.Timer)
-    ;and                 c                                  ; and c to timer
-    ;ret                 nz                                 ; no shot this time
     move.b              EYE_Timer(a2),d0
     and.b               d1,d0
     bne                 .exit
 
-    ;ld                  hl, EyeEnemyTempY                  ; pre-load temp area with y / x data
-    ;ld                  a, (ix+EYE.OffsetY)
-    ;add                 a, 9
-    ;ld                  (hl), a                            ; store temp y
-    ;inc                 hl
-    ;inc                 hl
-    ;ld                  a, (ix+EYE.OffsetX)
-    ;add                 a, 6
-    ;ld                  (hl), a                            ; store temp x
-    ;push                ix
-    ;exx
-    ;push                bc
-    ;push                de
-    ;push                hl
-    ;ld                  ix, EyeEnemyTemp                   ; temp eye position info which is used to add the shot
     lea                 BossFakeEnemy(a5),a1
     
     move.b              BossPosY(a5),d0
@@ -528,8 +466,6 @@ EyeShotLogic:                                     ; ...
     add.b               #6,d0
     move.b              d0,ENEMY_PosX(a1)
 
-    ;ld                  b, 0Eh                             ; shot type
-    ;call                AddEnemyShot                       ; add enemy shot
     exg                 a1,a2
     moveq               #$e,d0
     PUSHMOST

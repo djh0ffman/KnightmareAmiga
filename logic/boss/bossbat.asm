@@ -36,28 +36,16 @@ BatBossSetup:
     rts
 
 
-BatBossInit:                                    ; ...
-
-    ;ld          hl, 140h
-    ;ld          (BossWaveSpeedY), hl
+BatBossInit:                                 
     move.b      #$8,BossWaveSpeedY(a5)
     move.b      #$2,BossWaveSpeedX(a5)
 
-    ;ld          de, 180h
-    ;ld          (BossSpeedXDec), de
     move.w      #$280,BossSpeedX(a5)
 
-    ;ld          bc, 0E10h
-    ;ld          (BossDeathTimer), bc
-
-    ;ld          hl, 100h
-    ;ld          (BossSpeedYDec), hl
     move.w      #$100,BossSpeedY(a5)
-    ;ld          hl, 7820h
-    ;ld          (BossWaveOffsetYX), hl
+
     move.b      #$20,BossWaveOffsetY(a5)
     move.b      #$78,BossWaveOffsetX(a5)
-    ;jr          NextBossStatus
     clr.b       BossIsSafe(a5)
 
     addq.b      #1,BossStatus(a5)
@@ -69,16 +57,8 @@ BatBossInit:                                    ; ...
 
 BatBossMoveShoot:
     bsr         SkullBossShadow
-    ;call        DecBossDeathTimer                ; decrements the boss auto death timer
-                                                  ; tests value to set carry
-                                                  ;
-    ;jp          z, KillBoss                      ; boss status
-    ;call        BossWaveMove                     ; moves the boss in a wave like motion in y and x position
     bsr         BossWaveMove
 
-
-    ;call        BatBossShotCollisionCheck
-    ;jp          nz, KillBoss                     ; boss status
     bsr         PlayerShotBossLogic
     tst.b       BossDeathFlag(a5)
     bne         KillBoss
@@ -93,36 +73,12 @@ BatBossMoveShoot:
     move.b      BossPosX(a5),d0
     move.b      d0,ENEMY_PosX(a2)
 
-    ;ld          a, (TileBossId)
-    ;ld          hl, TileBossShotType
-    ;call        ADD_A_HL
-    ;ld          b, (hl)
-    ;ld          ix, BossShotList
-    ;call        AddEnemyShot                  ; add enemy shot
     moveq       #0,d0
     move.b      BossId(a5),d0
     lea         BossShotType,a0
     move.b      (a0,d0.w),d0
     bsr         AddEnemyShot    
     
-    ;ld          a, (BossPosX)
-    ;add         a, 0Ah
-    ;ld          (byte_E585), a
-
-
-
-    ;ld          a, (TileBossAnimId1)
-    ;or          a
-    ;ret         nz
-    ;ld          a, (TickCounter)
-    ;and         1Fh
-    ;ret         nz
-    ;ld          b, 0Ah
-    ;ld          ix, BossParams
-    ;jp          AddEnemyShot                     ; add enemy shot
-                                                  ;
-                                                  ; b = shot type
-                                                  ; ix = pointer to enemy (for position info)
 .skipshot
     move.b      #1,BossIsSafe(a5)
 
