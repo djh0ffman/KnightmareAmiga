@@ -11,8 +11,6 @@ AudioInit:
     moveq       #0,d0
     move.w      PalFlag(a5),d0
 
-    ;moveq       #1,d0                                               ; TODO : pal flag
-
     lea         system_variables,a0
     move.l      sys_vectorbase(a0),a0
 

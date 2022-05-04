@@ -80,45 +80,20 @@ QBlockInit:
 ProcessQBlocks:
     clr.w               QBlockRenderCount(a5)
 
-    ;ld         a, (LevelPosition)       ; starts at zero, increments 1 per 8 pixels of the map
-    ;cp         0D8h                     ; end of the level?
-    ;jr         nc, QBlockSkip           ; yes, do not process logic
-    ;ld         ix, ActiveQBlocks        ; pointer to current active qblocks on the map
-    ;ld         b, 8                     ; maximum of 8 qblocks at any one time
     cmp.b               #$d8,LevelPosition(a5)
     bcc                 .quit
     moveq               #QBLOCK_COUNT-1,d7
     lea                 ActiveQBlocks(a5),a0
 
 .loop
-    ;push       bc                       ; save coutner
-    ;call       QBlockLogic              ; qblock logic
-
     bsr                 QBlockLogic
     bsr                 QBlockRender
 
-    ;ld         de, 10h                  ; qblock data size
-    ;add        ix, de                   ; move to next
-    ;pop        bc                       ; restore counter
-    ;djnz       QBlockLogicLoop          ; save coutner
     lea                 QBLOCK_Sizeof(a0),a0
     dbra                d7,.loop
 .quit
     rts
 
-QBlockSkip:                                       ; ...
-
-
-
-    ;call       UpdatePlayerShots
-    ;ld         a, (GameFrame)
-    ;and        3Fh                      ; '?'
-    ;ret        z
-    ;ld         a, (BossStatus)          ; get boss status
-    ;or         a                        ; is boss active
-    ;ret        nz                       ; yes, so dont process attack wave
-    ;jp         LoadAttackWaveSprites
-    rts
 
 ;----------------------------------------------------------------------------
 ;
@@ -129,7 +104,7 @@ QBlockSkip:                                       ; ...
 ;----------------------------------------------------------------------------
 
 
-QBlockLogic:                                      ; ...
+QBlockLogic:                                   
     move.b              QBLOCK_Type(a0),d0
     btst                #7,d0
     bne                 QBlockPlayerCollision
@@ -164,10 +139,6 @@ QBlockLogic:                                      ; ...
 
 
 QBlockPlayerCollision:
-    ;ld         h, a                                           ; a = qblock type
-    ;and        7
-    ;cp         4                                              ; is this a blocker tile?
-    ;jr         nc, QBlockCollectLogic                         ; yes
     tst.b               QBLOCK_SubType(a0)
     bne                 .notcollected
 
@@ -177,29 +148,13 @@ QBlockPlayerCollision:
     cmp.b               #4,d1
     bcc                 .collect
 
-    ;ld         de, QTilePowerUp1                              ; no, draw it
-    ;add        a, a
-    ;add        a, a                                           ; a * 4
-    ;call       ADD_A_DE                                       ; de = power up tiles
-    ;bit        6, h                                           ; bit 6 = collected
-    ;jr         z, QBlockNotCollected                          ; qblock not collected
-    ;ld         de, QTileNothing
-    
-
 .notcollected 
-    ;call       DrawQBlockTile
-    ;bit        6, (ix+QBLOCK_Type)                            ; is qblock collected?
-    ;ret        nz                                             ; yes, quit
     btst                #6,d0
     bne                 .exit
 
-    ;call       CheckQBlockPlayerCollision
-    ;ret        c
     bsr                 CheckQBlockPlayerCollision
     bcs                 .exit
 
-    ;ld         a, 12h
-    ;call       
     cmp.b               #2,QBLOCK_SubType(a0)
     beq                 .collect
     
@@ -212,10 +167,6 @@ QBlockPlayerCollision:
 
 
 .collect    
-    ;set        6, (ix+QBLOCK_Type)                            ; set qblock as collected
-    ;ld         a, (ix+QBLOCK_Type)                            ; get qblock type
-    ;and        7                                              ; remove additional bits
-    ;call       JumpIndex_A         
     bset                #6,QBLOCK_Type(a0)                                  ; set qblock as collected
     move.b              QBLOCK_Type(a0),d0                                  ; get qblock type for jump
     and.w               #7,d0                                               ; remove additional bits
@@ -247,8 +198,6 @@ QBlockIndex:
 ;----------------------------------------------------------------------------
 
 QBlockShop:
-    ;move.b              #4,QBLOCK_BobId(a0)
-    ;move.b              #4,QBLOCK_DrawCount(a0)
     bclr                #6,QBLOCK_Type(a0) 
     tst.b               MapScrollTick(a5)
     bne                 .skip
@@ -298,20 +247,12 @@ QExtraLife:
     move.b              #4,QBLOCK_BobId(a0)
     move.b              #2,QBLOCK_DrawCount(a0)
 
-ExtraLifeLogic:                                   ; ...
-    ;ld                  hl, Lives
-    ;ld                  a, (hl)
-    ;cp                  99h                                            ; max 99
-    ;ret                 z
+ExtraLifeLogic:                                
     cmp.b               #99,Lives(a5)
     beq                 .exit
-    ;add                 a, 1                                           ; add 1
-    ;daa                                                                ; resolve to base 10
-    ;ld                  (hl), a                                        ; store
+
     addq.b              #1,Lives(a5)
 
-    ;ld                  a, 15h
-    ;call              
     bsr                 PowerUpCollectSfx
 
 .exit
@@ -326,9 +267,7 @@ ExtraLifeLogic:                                   ; ...
 ;
 ;----------------------------------------------------------------------------
 
-QScoreLogic:                                      ; ...
-    ;ld                  de, 500h
-    ;jp                  AddScore                                       ; add score
+QScoreLogic:                                   
     move.b              #4,QBLOCK_BobId(a0)
     move.b              #2,QBLOCK_DrawCount(a0)
     move.l              #500,d0
@@ -349,45 +288,23 @@ QKillAllLogic:
     bsr                 KillAllEnemy
     POP                 a0
 
-
-    ;ld                  a, 56h                                         ; 'V'
     moveq               #$16,d0
     bra                 SfxPlay
 
-KillAllEnemy:                                     ; ...
-    ;push                ix
-    ;ld                  ix, EnemyList
-    ;ld                  b, 7
+KillAllEnemy:                                  
     lea                 EnemyList(a5),a2
     moveq               #ENEMY_COUNT-1,d6
 
-
-;KillAllEnemyLoop:                                 ; ...
+                          
 .loop    
-    ;push                bc
-    ;ld                  a, (ix+ENEMY_Id)
-    ;and                 0Fh
-    ;ld                  hl, EnemyDeathStatusList
-    ;call                ADD_A_HL
-    ;ld                  a, (ix+ENEMY_Status)
-    ;and                 a
-    ;jr                  z, KillAllEnemySkip
     tst.b               ENEMY_Status(a2)
     beq                 .next
     tst.b               ENEMY_DeathFlag(a2)
     bne                 .next
-    ;cp                  (hl)
-    ;call                c, KillEnemyBonus
-    bsr                 KillEnemyBonus
 
-;KillAllEnemySkip:                                 ; ...
+    bsr                 KillEnemyBonus
+                       
 .next
-    ;pop                 bc
-    ;ld                  de, 20h                                        ; ' '                     ; enemy structure size
-    ;add                 ix, de
-    ;djnz                KillAllEnemyLoop
-    ;pop                 ix
-    ;jr                  ClearEnemyShots
     lea                 ENEMY_Sizeof(a2),a2
     dbra                d6,.loop
 
@@ -405,25 +322,6 @@ QFreezeLogic:
     move.b              #4,QBLOCK_BobId(a0)
     move.b              #2,QBLOCK_DrawCount(a0)
 
-    ;ld                  a, 3Dh                                         ; kill sound not required as we pause music
-
-
-    ;ld                  hl, CurrentQBlockCounter
-    ;ld                  a, 8
-    ;sub                 (hl)                                           ; qblock offset
-    ;dec                 hl                                             ; move pointer to offset
-    ;ld                  (hl), a                                        ; store offset
-    ;dec                 hl
-    ;ld                  a, 1
-    ;ld                  (FreezeFlag), a
-    ;ld                  (ix+QBLOCK.FreezeFlag), 
-    ;ld                  (hl), a
-    ;ld                  hl, 1000h                                      ; freeze timer
-    ;ld                  (ix+QBLOCK.FreezeTimerDec), l
-    ;ld                  (ix+QBLOCK.FreezeTimer), h
-    ;ld                  a, (GameFrame)
-    ;ld                  (ix+QBLOCK.FreezeTimeGameFrame), a             ; game frame store
-
     move.b              #1,FreezeFlag(a5)
     move.b              #1,FreezeStatus(a5)
     move.b              #10,FreezeTimerHi(a5)
@@ -431,17 +329,6 @@ QFreezeLogic:
     move.b              GameFrame(a5),FreezeTimeGameFrame(a5)
 
     bsr                 FreezeTimerDisplay
-
-;ClearEnemyShots:                                  ; ...
-    ;ld                  hl, EnemyShotList
-    ;ld                  b, 8
-
-;ClearEnemyShotsLoop:                              ; ...
-    ;ld                  (hl), 0
-    ;ld                  a, 10h
-    ;call                ADD_A_HL
-    ;djnz                ClearEnemyShotsLoop                            ; ClearEnemyShotsLoop
-    ;ret
 
     bra                 KillEnemyShots
     
@@ -453,27 +340,14 @@ QFreezeLogic:
 ;----------------------------------------------------------------------------
 
 QLevelSkipLogic:
-    ;ld                  de, QTileExit
-    ;call                DrawQBlockTile
-    ;call                CheckQBlockPlayerCollision
-    ;ret                 c
-    ;ld                  hl, LevelSkipData
-    ;ld                  b, 6
     bsr                 CheckQBlockPlayerCollision
     bcs                 .exit
 
     moveq               #6-1,d5
     move.b              QBLOCK_LevelPos(a0),d0
     lea                 LevelSkipData,a1
-;QLevelSkipLoop:                                   ; ...
+                       
 .loop
-    ;ld                  a, (ix+QBLOCK.LevelPos)
-    ;cp                  (hl)
-    ;inc                 hl
-    ;jr                  z, NextLevel                                    ; qblock position matches, skip level
-    ;inc                 hl
-    ;djnz                QLevelSkipLoop
-    ;ret
     cmp.b               (a1)+,d0
     beq                 .found
     addq.l              #1,a1
@@ -485,38 +359,21 @@ QLevelSkipLogic:
     clr.b               PowerUpSfxActive(a5)   
     clr.b               SfxDisable(a5)
     
-NextLevel:                                        ; ...
-    ;ld                  b, (hl)
+NextLevel:                                     
     move.b              (a1),d0
-
-    ;ld                  hl, Stage
-    ;ld                  a, (hl)
-    ;add                 a, b
-    ;daa
-    ;ld                  (hl), a
     add.b               d0,Stage(a5)
 
-    ;inc                 hl
-    ;ld                  a, (hl)
-    ;add                 a, b
-    ;ld                  (hl), a
     move.b              Level(a5),d1
     add.b               d0,d1
     and.b               #7,d1
     move.b              d1,Level(a5)
 
-    ;ld                  a, 1
-    ;ld                  (AdvanceStageFlag), a
     move.b              #1,AdvanceStageFlag(a5)
 
-    ;ld                  a, 0B1h
-    ;call               
-    
     moveq               #0,d0
     moveq               #MOD_WARP,d1
     bsr                 MusicSet
 
-    ;jr                  QBlockRemove1
     clr.b               QBLOCK_Type(a0)
     clr.b               QBLOCK_HitCount(a0)
     rts
@@ -580,7 +437,6 @@ QBlockBridgeLogic:
     lea                 BridgeTiles,a2
     move.b              (a2,d0.w),d0                                        ; bridge tile
 
-    ;move.l              MapPointer(a5),a2
     lea                 MapBuffer(a5),a2
     move.b              d0,(a2,d2)                                          ; replace tile with bridge tile
 
@@ -625,7 +481,6 @@ QBlockerLogic:
  
     add.w               d2,d0                                               ; add map Y ( pixel )
     add.w               #8,d0
-    ;and.w               d3,d0                                           ; remove decimal
     lsl.w               #2,d0                                               ; shift y to tile line
 
     lsr.w               #3,d1                                               ; x pos in 8x8 tile ( divide by 8 )
@@ -649,30 +504,11 @@ QBlockerLogic:
 ;----------------------------------------------------------------------------
 
 QBlockSideWarp:
-    ;ld          a, (ix+QBLOCK_PosY)
-    ;cp          0B0h
-    ;jr          nc, QBlockRemove1                              ; qblock out of screen, remove it
-    ;ld          a, (ix+QBLOCK_MaxHits)
-    ;and         0F0h
-    ;add         a, a
-    ;ld          b, a
-
     moveq               #0,d1
     move.b              QBLOCK_PosX(a0),d1
     swap                d1
     move.b              QBLOCK_PosY(a0),d1
     sub.b               #$8,d1                                              ; TODO: make this sensible!
-
-    ;moveq             #8,d2                                          ; box size width?
-    ;swap              d2
-    ;move.b            QBLOCK_MaxHits(a0),d2
-    ;and.b             #$f0,d2
-    ;add.b             d2,d2
-    ;swap              d2
-
-    ;ld          c, 8
-    ;call        CheckQBlockPlayerCollision1
-    ;ret         c
 
     move.l              #$00080010,d2                                       ; TODO: check if this is sensible
     GETPLAYERDIM
@@ -684,27 +520,15 @@ QBlockSideWarp:
     btst                #0,QBLOCK_MaxHits(a0)
     beq                 .left
 
-    ;bit         3, a                                           ; controls right
-    ;ret         z                                              ; not pressed, quit
-    ;jr          QBlockerMovePlayer
-    ;right
     btst                #3,d0
     beq                 .exit
     bra                 .moveplayer
 
 .left
-    ;bit         2, a                                           ; controls left
-    ;ret         z                                              ; not pressed, quit
     btst                #2,d0
     beq                 .exit
 
 .moveplayer
-    ;ld          hl, PlayerX
-    ;ld          a, (hl)
-    ;neg
-    ;sub         10h
-    ;ld          (hl), a
-    ;ret
     move.w              PlayerStatus+PLAYER_PosX(a5),d0
     neg.w               d0
     sub.w               #$1000,d0
@@ -732,41 +556,14 @@ QBlockSideWarp:
 
 
 QBlockShotColLogic:
-    ;ld                a, (ix+QBLOCK_HitCount)
-    ;or                a
-    ;ld                de, QTile
-    ;call              nz, DrawQBlockTile
-
-    ;tst.b               QBLOCK_HitCount(a0)
-    ;beq                 .hit
-
-.hit
-    ;ld                a, (ix+QBLOCK_PosY)
-    ;cp                0B0h
-    ;jp                nc, QBlockRemove1
-    ;ld                hl, PlayerShot1
-    ;ld                b, 3
     lea                 PlayerShotDims,a2
     lea                 PlayerShot1(a5),a1
     moveq               #3-1,d6 
-
-;QBlockShotColLoop:                                ; ...
+                    
 .loop
-    ;bit               7, (hl)                                        ; bit 7 = qblock revealed
-    ;jr                nz, QBlockSkipShotColCheck
     btst                #7,PLAYERSHOT_Status(a1)
     bne                 .skip
-    ;push              hl
-    ;push              bc
-    ;inc               l
-    ;inc               l
-    ;call              GetPlayerShotDim                               ; get player shot dimensions
-                                                  ;
-                                                  ; hl = player shot pointer (starting at pos y)
-                                                  ; de = player shot box
-    ;ld                l, (ix+QBLOCK_PosY)
-    ;ld                h, (ix+QBLOCK_PosX)
-    ;ld                bc, 808h
+
     GETPLAYERSHOTDIM    a1,a2
 
     moveq               #0,d1
@@ -776,42 +573,19 @@ QBlockShotColLogic:
     sub.b               #16,d1
     move.l              #$00080008,d2
 
-
-    ;call              CheckCollision                                 ; collision detect
-
     CHECKCOLLISION
     bcs                 .skip
 
-    ;pop               bc
-    ;pop               hl
-    ;jr                nc, QBlockShot                                 ; reveal qblock after shot
-
-;QBlockShot:                                       ; ...
-    ;set                 7, (hl)                                        ; reveal qblock after shot
     bset                #7,PLAYERSHOT_Status(a1)                            ; kill shot
-    ;lea                 BobMatrix(a5),a3
-    ;move.w              PLAYERSHOT_BobSlot(a1),d0
-    ;lea                 (a3,d0.w),a3
-    ;clr.b               Bob_Allocated(a3)
 
-    ;ld                  a, 0Fh
-    ;call              
     moveq               #$f,d0
     bsr                 SfxPlay
 
-    ;inc                 (ix+QBLOCK_HitCount)
-    ;ld                  a, (ix+QBLOCK_HitCount)
-    ;cp                  (ix+QBLOCK_MaxHits)
-    ;ret                 c
-
     addq.b              #1,QBLOCK_HitCount(a0)
     move.b              QBLOCK_HitCount(a0),d0
-    ;move.b              QBLOCK_MaxHits(a0),d1
-    ;move.b              QBLOCK_Type(a0),d2
     cmp.b               QBLOCK_MaxHits(a0),d0
     bcs                 .skip
 
-    ;set                 7, (ix+QBLOCK_Type)
     bset                #7,QBLOCK_Type(a0)                                  ; set qblock flag as fully shot
 
     move.b              QBLOCK_Type(a0),d0                                  ; reveal power-up?
@@ -824,9 +598,6 @@ QBlockShotColLogic:
     bne                 .notbridge
 
     moveq               #-1,d0                                              ; -1 means draw a bridge
-    ;cmp.b               #6,d0                                           ; dont draw the bridge icon
-    ;beq                 .skip
-
 
 .notbridge
     cmp.b               #2,QBLOCK_SubType(a0)
@@ -835,18 +606,11 @@ QBlockShotColLogic:
 .notshop
     move.b              d0,QBLOCK_BobId(a0)
     move.b              #2,QBLOCK_DrawCount(a0)
-
-    ;ld                  a, 10h
-    ;jp                  
+   
     moveq               #$10,d0
     bsr                 SfxPlay
-
-;QBlockSkipShotColCheck:                           ; ...
+                       
 .skip
-    ;ld                de, 10h
-    ;add               hl, de                                         ; move to next shot
-    ;djnz              QBlockShotColLoop                              ; bit 7 = qblock revealed
-    ;ret
     lea                 PLAYERSHOT_Sizeof(a1),a1
     dbra                d6,.loop
 
@@ -872,22 +636,9 @@ QBlockShotColLogic:
 ;----------------------------------------------------------------------------
 
 CheckQBlockPlayerCollision:
-    ;ld                a, (PlayerStatus)
-    ;cp                2
-    ;jr                nc, NoQBlockPlayerCollision                    ; set carry false, i.e. no collision
-    ;ld                bc, 808h                                       ; box size
     cmp.b               #PLAYERMODE_DEAD,PlayerStatus(a5)
     bcc                 .nocollision
 
-;CheckQBlockPlayerCollision1:                      ; ...
-    ;call              GetPlayerDim                                   ; returns player dimensions
-                                                  ;
-                                                  ; hl = postion y / x
-                                                  ; de = box size
-    ;ld                l, (ix+QBLOCK_PosY)
-    ;ld                h, (ix+QBLOCK_PosX)
-    ;jp                CheckCollision                                 ; collision detect
-                                                  ;
     moveq               #0,d1
     move.b              QBLOCK_PosX(a0),d1
     swap                d1
@@ -899,9 +650,6 @@ CheckQBlockPlayerCollision:
     CHECKCOLLISION
     rts
 
-;NoQBlockPlayerCollision:                          ; ...
-    ;scf                                                              ; set carry false, i.e. no collision
-    ;ret
 .nocollision
     move                #1,CCR
     rts 
@@ -920,51 +668,27 @@ CheckQBlockPlayerCollision:
 ;----------------------------------------------------------------------------
 
 
-AddQBlock:                                        ; ...
-    ;ld         a, (iy+QBLOCKDATA_Type)
-    ;ld         c, a                           ; qblock type
-    ;cp         15h                            ; warp block
-    ;jr         nz, AddQBlockNotWarp
+AddQBlock:                                     
     move.b              QBLOCKDATA_Type(a1),d2
     cmp.b               #$15,d2
     bne                 .notlevelwarp
 
-    ;ld         a, (LevelId2)
-    ;ld         hl, Stage
-    ;cp         (hl)                           ; check if this is the 2nd loop of the game?
-    ;jr         c, AddQBlockSkip               ; not the 2nd loop, do not add warp block
     move.b              LevelId2(a5),d0
     cmp.b               Stage(a5),d0
-    ;bcs                 .skip                  ; TODO: decide about level warps
 
 .notlevelwarp
-    ;ld         a, c
-    ;and        1Fh
-    ;cp         17h                            ; another hidden flag?
     move.b              d2,d0
     and.b               #$1f,d0
     cmp.b               #$17,d0
     bcs                 .notwrap                    
-    ;jr         c, loc_6A38
-    ;ld         a, 97h
     move.b              #$97,d0                                             ; screen wrap block
 
 .notwrap
-    ;ld         (ix+QBLOCK_Type), a
-    ;ld         (ix+QBLOCK_PosY), 0
-    ;ld         a, (iy+QBLOCKDATA_PosX)       
-    ;ld         (ix+QBLOCK_PosX), a
     clr.b               QBLOCK_Remove(a0)
     move.b              d0,QBLOCK_Type(a0)
     move.b              #-1,QBLOCK_PosY(a0)  
     move.b              QBLOCKDATA_PosX(a1),QBLOCK_PosX(a0)                 ; qblock x screen position
     move.b              #2,QBLOCK_DrawCount(a0)
-
-    ;ld         a, c
-    ;and        0Fh
-    ;ld         hl, QBlockHitCounts
-    ;call       ADD_A_HL
-    ;ld         a, (hl)
 
     moveq               #0,d0
     move.b              d2,d0
@@ -973,21 +697,15 @@ AddQBlock:                                        ; ...
     move.b              (a3,d0.w),d0
 
     moveq               #0,d4                                               ; hitcount
-    ;bit        5, c
-    ;jr         z, AddQBlockVisible
+
     btst                #5,d2
     beq                 .visible
-    ;ld         (ix+QBLOCK_HitCount), 1
-    ;inc        a
-    ;move.b              #1,QBLOCK_HitCount(a0)                         ; blocks are visible with hit count > 1
+
     addq.b              #1,d4                                               ; hit count
     addq.b              #1,d0                                               ; max hits
 .visible
-    ;ld         (ix+QBLOCK_MaxHits), a
     move.b              d0,QBLOCK_MaxHits(a0)
     move.b              d4,QBLOCK_HitCount(a0)
-    ;ld         a, (iy+QBLOCKDATA_LevelPos) 
-    ;ld         (ix+QBLOCK_LevelPos), a
     move.b              QBLOCKDATA_LevelPos(a1),QBLOCK_LevelPos(a0)         ; qblock level position
  
     move.b              QBLOCKDATA_SubType(a1),QBLOCK_SubType(a0)
@@ -1066,8 +784,7 @@ QBlockRender:
 
     moveq               #0,d0
     move.b              QBLOCK_BobId(a0),d0
-    ;cmp.b               #6,d0
-    ;beq                 .bridge
+
     bmi                 .bridge
 
     add.w               d0,d0

@@ -24,8 +24,6 @@ CreditsInit:
 
 
 CreditsRun:
-    ;bsr          wait_raster
-
     btst         #0,TickCounter(a5)
     beq          .exit
 
@@ -98,9 +96,6 @@ CreditPlot:
 
 CreditPlotText:
     PUSHMOST
-    ;add.w        d0,d0
-    ;add.w        d0,d0
-    ;move.l       StrideLookUp(a5,d0.w),d0               ; start Y
     mulu         #SCREEN_STRIDE,d0
 
     add.l        d0,d1  

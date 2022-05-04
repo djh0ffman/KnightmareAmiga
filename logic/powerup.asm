@@ -15,7 +15,7 @@
 ; sword
 ; fire arrow
 
-PowerUpLogic:                                     ; ...
+PowerUpLogic:                                  
     tst.b             PowerUpStatus(a5)
     bne               PowerUpActive
 
@@ -381,7 +381,7 @@ PowerUpBobLogic:
 ; a0 = player structure
 ; ---------------------------------------------------------------------------
     
-PowerUpTimerLogic:                                ; ...
+PowerUpTimerLogic:                             
     cmp.b             #POWERUP_TRANSPARENT,PLAYER_PowerUp(a0)
     bcs               .exit
 

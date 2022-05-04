@@ -64,7 +64,7 @@ MainGameLogic3:
     bsr        ScrollLogic                          ; move the map on by one line
 .skipscroll
 
-MainGameLogic4:                                   ; ...
+MainGameLogic4:                            
     tst.b      BossStatus(a5)
     beq        .skipboss
     bsr        BossLogic

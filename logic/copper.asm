@@ -170,9 +170,6 @@ LoadCopperScroll:
 
 .skipsprite
 
-    ;lea                COPPER_PLANES_HUD(a4),a3
-    ;move.l             #Hud,d0                                ; current screen TODO: stop loading this!
-    ;PLANE_TO_COPPER    d0,a3
     move.l             #HUD,d0
     lea                COPPER_PLANES_HUD(a4),a3
     move.l             #HUD_WIDTH_BYTE,d5  

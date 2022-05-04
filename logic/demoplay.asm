@@ -7,29 +7,15 @@
 ;----------------------------------------------------------------------------
 
     include    "common.asm"
-; demo play logic
-;
 
-DemoPlayLogic:                                    ; ...
-    ;ld         hl, DemoPlayWait
-    ;dec        (hl)                                                             ; sub wait counter
-    ;jr         nz, DemoPlayReadControl                                          ; counter not zero, apply current control
-    ;ld         (hl), 8                                                          ; reload wait counter
-    ;dec        hl                                                               ; move to control index
-    ;inc        (hl)                                                             ; increment control index
-    ;inc        hl                                                               ; move back to wait timer
+DemoPlayLogic:                             
     lea        DemoPlayWait(a5),a0
     subq.b     #1,(a0)                                                          ; sub wait counter
     bne        DemoPlayReadControl                                              ; move to control index
     move.b     #8,(a0)
     addq.b     #1,DemoPlayIndex(a5)
 
-DemoPlayReadControl:                              ; ...
-    ;dec        hl                                                               ; move to control index
-    ;ld         a, (hl)
-    ;ld         hl, DemoPlayData                                                 ; pointer to control data
-    ;call       ADD_A_HL                                                         ; add index to pointer
-    ;ld         a, (hl)
+DemoPlayReadControl:                       
     moveq      #0,d0
     move.b     DemoPlayIndex(a5),d0
     cmp.b      #$ff,d0
@@ -38,11 +24,7 @@ DemoPlayReadControl:                              ; ...
     move.b     (a0,d0.w),d0
 
     bne        StoreControls1
-    ;cp         0FFh                                                             ; check end of data, but this condition is never met, player always dies before
-    ;jp         nz, StoreControls1                                               ; no, use this value for player control in demo
-    ;xor        a
-    ;ld         (GameRunning), a                                                 ;  clear game running flag to reboot game
-    ;ld         a, 3Dh                                                           ; kill sound
+
     bsr        SfxStopAll
     clr.b      GameRunning(a5)
     rts
@@ -54,37 +36,18 @@ DemoPlayReadControl:                              ; ...
 ;----------------------------------------------------------------------------
 
 
-StartDemo:                                         ; ...
-    ;call        UnpackSharedGfx
-    ;ld          hl, EnemyData                          ; clear all the datas
-    ;ld          de, EnemyData+1
-    ;ld          bc, 6E0h                               ; number of bytes
-    ;ld          (hl), 0
-    ;ldir
-    ;xor         a
-    ;ld          (Stage), a
-    
-    ;call        DrawHud
-    ;call        InitLevel
+StartDemo:                                  
     bsr        InitLevel
     bsr        ShowHudScreen
 
-    ;ld          a, (Level)
-    ;inc         a
-    ;ld          (Stage), a
     move.b     Level(a5),d0
     addq.b     #1,d0
     move.b     d0,Stage(a5)
 
-    ;ld          hl, 800h
-    ;ld          (DemoPlayIndex), hl
     clr.b      DemoPlayIndex(a5)
     move.b     #8,DemoPlayWait(a5)
 
-    ;ld          a, 1
-    ;ld          (GameRunning), a
     move.b     #1,GameRunning(a5)
-    ;ret
     rts
 
 

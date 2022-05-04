@@ -7,9 +7,6 @@
 ;----------------------------------------------------------------------------
 
 PlayerModeLogic:      
-    ;ld         ix, PlayerStatus
-    ;ld         a, (ix+PLAYER_Status)
-    ;call       JumpIndex_A
     lea               PlayerStatus(a5),a0
     moveq             #0,d0
     move.b            PLAYER_Status(a0),d0
@@ -33,27 +30,17 @@ PlayerModeDummy:
 ;----------------------------------------------------------------------------
 
 PlayerModeMove:       
-    ;call        PlayerControl                               ; manages the player control
     bsr               PlayerControl
 
-    ;ld          a, (ix+PLAYER_PowerUp)                      ; Power up
-    ;cp          POWERUP_RED
-    ;jr          z, UpdatePlayerSprites_
     cmp.b             #POWERUP_RED,PLAYER_PowerUp(a0)
     beq               UpdatePlayerSprites
 
-    ;ld          a, (ControlsTrigger)
-    ;bit         4, a
-    ;jr          z, UpdatePlayerSprites_
     btst              #4,ControlsTrigger(a5)
     beq               UpdatePlayerSprites                         
 
-    ;ld          (ix+PLAYER_Status), 1
-    ;ld          (ix+PLAYER_Timer), 0
     move.b            #1,PLAYER_Status(a0)
     clr.b             PLAYER_Timer(a0)
 
-    ;jp          UpdatePlayerSprites
     bra               UpdatePlayerSprites
 
 ;----------------------------------------------------------------------------
@@ -63,13 +50,8 @@ PlayerModeMove:
 ;----------------------------------------------------------------------------
 
 PlayerModeShoot:      
-    ;call        PlayerControl                               ; manages the player control
     bsr               PlayerControl
 
-    ;inc         (ix+PLAYER_Timer)
-    ;ld          a, (ix+PLAYER_Timer)
-    ;cp          4
-    ;call        z, PlayerAddShot
     addq.b            #1,PLAYER_Timer(a0)
     move.b            PLAYER_Timer(a0),d0
     cmp.b             #1,d0                                                  ; PLAYER_Timer(a0)
@@ -79,10 +61,6 @@ PlayerModeShoot:
     bra               UpdatePlayerSprites
 
 .noshot
-    ;cp          6
-    ;jr          c, UpdatePlayerSprites_
-    ;ld          (ix+PLAYER_Status), 0
-    ;ret
     cmp.b             #6,d0                                                  ; PLAYER_Timer(a0)
     bne               .notdone
 
@@ -115,11 +93,6 @@ PlayerModeShoot:
 PlayerControl:      
     lea               PlayerSpeeds,a4
 
-    ;ld          a, (ix+PLAYER_PowerUp)
-    ;cp          POWERUP_RED                                 ; is player invincible?
-    ;ld          a, (ix+PLAYER_Speed)                        ; get player current speed
-    ;jr          nz, PlayerNoRedSpeed                        ; skip if player not invincible
-    ;ld          a, 4                                        ; player invincible, set max speed
     moveq             #4,d0                                                  ; red is full speed                                
     cmp.b             #POWERUP_RED,PLAYER_PowerUp(a0)
     bcc               .redpower
@@ -197,50 +170,23 @@ PlayerAnimate:
 .nopong
     move.b            d0,PLAYER_AnimFrame(a0)
 
-    ;call        GetPlayerTiles
     bsr               GetPlayerTiles
-    ;ld          a, (BossStatus)
-    ;or          a
-    ;jr          z, PlayerSkipBossCheck
+
     tst.b             BossStatus(a5)
     beq               .skipbosscheck
-    ;ld          a, (BossStatus2)
-    ;or          a
-    ;jr          nz, PlayerSkipBossCheck
-    ;ld          a, (Level)
-    ;cp          6
-    ;jr          nz, PlayerBossCheck                         ; level id 6 is only stage where boss is a "normal" enemy
-    ;ld          a, (BossParams)
-    ;or          a
-    ;jr          z, PlayerSkipBossCheck
 
-;PlayerBossCheck:      
-    ;call        CheckBossCollision
-    nop
     GETPLAYERDIM
     GETBOSSDIM
     CHECKCOLLISION
 
-    ;jr          nc, BossKillPlayer
     bcc               KillPlayer
 
-;PlayerSkipBossCheck:  
 .skipbosscheck
-    ;ld          a, (ix+PLAYER_PosY)
-    ;cp          0A0h
-    
-    ;jr          c, PowerUpTimerLogic
     cmp.b             #$b0,PLAYER_PosY(a0)
     bcs               PowerUpTimerLogic
-    ;ld          (ix+PLAYER_PosY), 9Fh                       ; player max y
-    move.b            #$af,PLAYER_PosY(a0)
-    bra               KillPlayer
 
-BossKillPlayer:       
-    ;pop         hl
-    ;jp          KillPlayer
-    ;bra         KillPlayer
-    rts
+    move.b            #$af,PLAYER_PosY(a0)                  ; proof I accidentally made the game screen longer
+    bra               KillPlayer
 
 
 ;----------------------------------------------------------------------------
@@ -345,22 +291,15 @@ KillPlayer:
     if                DEBUG_INVINCIBLE=1
     rts
     endif
-    ;ld                hl, PlayerStatus
-    ;ld                a, PLAYERMODE_DEAD
-    ;cp                (hl)
-    ;ret               z
-    ;ld                (hl), a
+
     cmp.b             #PLAYERMODE_DEAD,PlayerStatus(a5)
     beq               .exit
     move.b            #PLAYERMODE_DEAD,PlayerStatus(a5)
-    ;ld                a, 90h
-    ;ld                (PlayerTimer), a
+
     move.b            #$e0,PlayerStatus+PLAYER_Timer(a5)
     clr.b             PlayerStatus+PLAYER_AnimFrame(a5)
     clr.b             MapReadyFlag(a5)                                       ; stop scrolling
 
-    ;ld                a, 0AEh
-    ;jp              
     clr.b             PowerUpSfxActive(a5)
     clr.b             SfxDisable(a5)
 

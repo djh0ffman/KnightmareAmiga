@@ -145,7 +145,7 @@ GetPlayerTiles:
     rts
 
 PlayerTileOffsetList:
-    dc.w                $01, $04                                            ; ...
+    dc.w                $01, $04                                     
     dc.w                $01, $0B
     dc.w                $08, $02
     dc.w                $08, $0D
@@ -174,21 +174,6 @@ ScrollMovePlayer:
     add.b               #1,PlayerStatus+PLAYER_PosY(a5)
 .nomove
     rts
-;    tst.b               0(a4)
-;    beq                 .next
-;    tst.b               1(a4)
-;    bne                 .moveplayer
-
-;.next
-;    tst.b               6(a4)
-;    beq                 .nomove
-;    tst.b               7(a4)
-;    beq                 .nomove
-;
-;.moveplayer
-;    add.b               #1,PlayerStatus+PLAYER_PosY(a5)
-;.nomove
-;    rts
 
 ;----------------------------------------------------------------------------
 ;
@@ -201,40 +186,18 @@ ScrollMovePlayer:
 ;----------------------------------------------------------------------------
 
 
-EnemyPlayerShotLogic:                             ; ...
-    ;call       GetEnemyDeathStatus                    ; get enemy death status
-    ;ret        z
-    ;cp         (hl)
-    ;ret        nc
+EnemyPlayerShotLogic:                      
     tst.b               ENEMY_Safe(a2)
     bne                 .exit
 
     tst.b               ENEMY_DeathFlag(a2)
     bne                 .exit
-    ;ld         a, (ix+ENEMY_Id)
-    ;and        0Fh
-    ;jr         nz, EnemyPlayerShotLogicKong           ; not devil
-    ;ld         a, (FreezeStatus)                      ; devil logic
-    ;and        a
-    ;jr         nz, PlayerShotCollisionCheck           ; freeze not active
-    ;ld         a, (ix+ENEMY_Status)
-    ;cp         3
-    ;ret        c                                      ; devil status < 3, quit
-    ;cp         5
-    ;ret        nc                                     ; status >= 5, quit
-    ;jr         PlayerShotCollisionCheck
+
     bsr                 PlayerShotCollisionCheck
 .exit
     rts
 
-PlayerShotCollisionCheck:                         ; ...
-    ;ld         hl, PlayerShot1
-    ;ld         a, (hl)
-    ;rla                                               ; check bit 7
-    ;jr         c, SkipShot2
-    ;call       CheckShotCollisionWithEnemy
-    ;ld         hl, PlayerShot1Type
-    ;jr         nc, PlayerShotHit                      ; player shot type
+PlayerShotCollisionCheck:                  
     moveq               #0,d0
     lea                 PlayerShot1(a5),a1
     move.b              (a1),d0
@@ -244,13 +207,6 @@ PlayerShotCollisionCheck:                         ; ...
     bcc                 PlayerShotHit
 
 .skip1
-    ;ld         hl, PlayerShot2
-    ;ld         a, (hl)
-    ;rla                                               ; check bit 7
-    ;jr         c, ShipShot3
-    ;call       CheckShotCollisionWithEnemy
-    ;ld         hl, PlayerShot2Type
-    ;jr         nc, PlayerShotHit                      ; player shot type
     lea                 PLAYERSHOT_Sizeof(a1),a1
     move.b              (a1),d0
     lsl.b               #1,d0
@@ -259,14 +215,7 @@ PlayerShotCollisionCheck:                         ; ...
     bcc                 PlayerShotHit
 
 .skip2
-    ;ld         hl, PlayerShot3
-    ;ld         a, (hl)
-    ;rla                                               ; check bit 7
-    ;ret        c
-    ;call       CheckShotCollisionWithEnemy
     lea                 PLAYERSHOT_Sizeof(a1),a1
-    ;ld         hl, PlayerShot3Type
-    ;ret        c
     move.b              (a1),d0
     lsl.b               #1,d0
     bcs                 .skip3
@@ -285,20 +234,7 @@ PlayerShotCollisionCheck:                         ; ...
 ;----------------------------------------------------------------------------
 
 
-CheckShotCollisionWithEnemy:                      ; ...
-    ;ld         a, (ix+ENEMY_PosY)
-    ;cp         0D0h
-    ;jr         c, CheckShotCollisionWithEnemy1
-    ;cp         0FAh
-    ;jr         c, SetCarryFalse
-
-;CheckShotCollisionWithEnemy1:                     ; ...
-    ;inc        l
-    ;inc        l
-    ;call       GetPlayerShotDim                       ; get player shot dimensions
-    ;call       GetEnemyBoxPos                         ; get enemy position
-    ;jp         CheckCollision                         ; collision detect
-
+CheckShotCollisionWithEnemy:               
     GETPLAYERSHOTDIM    a1,a0
     GETENEMYDIM
 
@@ -323,8 +259,6 @@ PlayerShotHit:
     bcc                 .checkkong
 
     bset                #7,PLAYERSHOT_Status(a1)                            ; remove shot
-    ;move.w              PLAYERSHOT_BobSlot(a1),d3
-    ;clr.b               Bob_Allocated(a4,d3.w)
 
 .checkkong
     move.b              ENEMY_Id(a2),d0
@@ -332,82 +266,53 @@ PlayerShotHit:
     cmp.b               #$f,d0                                              ; is kong?
     bne                 .checkbones                                         ; no
 
-    ;ld                  a, (ix+ENEMY_Status)                   ; kong hit
-    ;cp                  3
-    ;jr                  nc, PlayerShotHitBones                 ; is bones?
     cmp.b               #3,ENEMY_Status(a2)
     bcc                 .checkbones
 
-    ;ld                  a, (FreezeStatus)
-    ;and                 a
-    ;jr                  nz, PlayerShotHitBones                 ; is bones?
     tst.b               FreezeStatus(a5)
     bne                 .checkbones
 
-    ;ld                  (ix+ENEMY_Status), 3
     move.b              #3,ENEMY_Status(a2)                                 ; split kong
 
-    ;ld                  a, 0Ah
-    ;jp                 
     moveq               #$1b,d0
     bra                 SfxPlay
 
 .checkbones
-    ;cp                  7                                      ; is bones?
-    ;jr                  nz, PlayerShotHitCloud                 ; no
     cmp.b               #7,d0                                               ; is bones?
     bne                 .checkcloud                                         ; no
 
-    ;dec                 (ix+ENEMY_BonesDeathCount)             ; player hit bones
-    ;jr                  z, PlayerShotHitCloud                  ; is clouds?
     cmp.b               #POWERUP_GRADIUS,PlayerStatus+PLAYER_PowerUp(a5)
     beq                 .other
 
     subq.b              #1,ENEMY_BonesDeathCount(a2)
     beq                 .other
 
-    ;ld                  a, (FreezeStatus)
-    ;and                 a
-    ;jr                  nz, PlayerShotHitCloud                 ; freeze active
     tst.b               FreezeStatus(a5)
     bne                 .other
-    ;ld                  (ix+ENEMY_Status), 4
+
     move.b              #4,ENEMY_Status(a2)
-    ;ld                  a, 0Ah
     moveq               #$a,d0
     bra                 SfxPlay
 
 .checkcloud
-    ;cp                  0Ch                                    ; is clouds?
-    ;jr                  nz, PlayerShotHitOther                 ; no
     cmp.b               #$c,d0                                              ; is clouds?
     bne                 .other                                              ; no
     
-    ;ld                  a, (FreezeStatus)
-    ;and                 a
-    ;jr                  nz, PlayerShotHitOther
     cmp.b               #POWERUP_GRADIUS,PlayerStatus+PLAYER_PowerUp(a5)
     beq                 .other
 
     tst.b               FreezeStatus(a5)
     bne                 .other
 
-    ;ld                  (ix+ENEMY_Status), 3
     cmp.b               #3,ENEMY_Status(a2)
     bcc                 .exit                                               ; TODO: hmmm  not sure why i have to add this in?
     move.b              #3,ENEMY_Status(a2)
 
-    ;ld                  a, 4Dh                                 ; 'M'
     moveq               #$25,d0
     bra                 SfxPlay
 
 
 .other
-    ;ld                  a, b
-    ;cp                  3
-    ;jr                  nc, PlayerShotHitBonus
-    ;dec                 (ix+ENEMY_HitPoints)
-    ;ret                 nz                                     ; enemy still has hit points, quit
     cmp.b               #3,d2
     bcc                 KillEnemyBonus
     subq.b              #1,ENEMY_HitPoints(a2)
@@ -452,7 +357,6 @@ KillEnemy:
     move.w              #-1,ENEMY_BobSlot2(a2)
 
 .noslot2    
-    ;ld                  a, 4Dh                                 ; 'M'
     move.b              #$d,d0                                              ; fire
     bra                 SfxPlay
 
