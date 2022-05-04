@@ -21,11 +21,7 @@ BlobLogicList:
     dc.w        EnemyBonusWait-BlobLogicList     
 
 
-BlobInit:                                         ; ...
-    ;call        EnemyClearParams
-    ;ld          (ix+ENEMY.SpeedYDec), 80h
-    ;ld          (ix+ENEMY.SpriteId), 20h     ; ' '
-    ;jp          EnemyNextStatus_
+BlobInit:                                      
     bsr         EnemyClear
     move.w      #$0080,ENEMY_SpeedY(a2)
     addq.b      #1,ENEMY_Status(a2)
@@ -33,9 +29,6 @@ BlobInit:                                         ; ...
     rts
 
 BlobRun:
-    ;ld            b, 20h                     ; ' '                      ; Blob base sprite id
-    ;jp            EnemyShootAnimate
-    ;ANIMATE2
     bsr         AnimatePingPong
     bsr         MoveEnemy
     bra         EnemyShotLogic
