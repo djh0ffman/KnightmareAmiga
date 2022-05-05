@@ -54,19 +54,13 @@ EnemyCollisionLogic:
     move.b            ENEMY_Id(a2),d0
     and.w             #$f,d0
 
-    ;cmp.b             #7,d0
-    ;bne               .skipbones
+    cmp.b             #7,d0
+    bne               .skipbones
 
-    ;ld          a, (ix+ENEMY.Status)
-    ;cp          4                                         ; bones status 4
-    ;ret         nc                                        ; >= so no check
+    cmp.b             #4,ENEMY_Status(a2)                                     ; bones status 4 
+    bcc               .exit                                                   ; >= so no check
 
-;SkipBonesCheck:                            
-;.skipbones
-    ;ld          iy, PlayerStatus
-    ;call        CheckEnemyCollision                       ; check player collides with enemy
-    ;ret         c                                         ; no collision, quit
- 
+.skipbones                                   ; no collision, quit
     ; check enemy hits shield
     cmp.b             #POWERUP_SHIELD,PlayerStatus+PLAYER_PowerUp(a5)
     bne               .skipshield
